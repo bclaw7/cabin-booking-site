@@ -5,7 +5,7 @@ export function Header() {
     <header className="sticky top-0 z-30 border-b border-emerald-100 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <Link href="/" className="text-lg font-semibold text-emerald-900">
-          ADU Cabin
+          Apples and Arches
         </Link>
         <nav aria-label="Main navigation" className="flex items-center gap-3 text-sm font-medium">
           <Link

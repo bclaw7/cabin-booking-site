@@ -16,7 +16,7 @@ export default function Home() {
               Step-free entry, wide doorways, and calm lighting make this a comfortable stay for every guest.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-white text-emerald-700 hover:bg-emerald-50">
+              <Button asChild variant="secondary">
                 <Link href="/book">Start a booking</Link>
               </Button>
               <Button asChild variant="secondary">

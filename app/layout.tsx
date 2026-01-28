@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ADU Cabin Booking",
+  title: "Apples and Arches Booking",
   description: "Book a cozy, ADA-friendly cabin stay.",
 };
 
