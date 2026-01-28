@@ -14,7 +14,7 @@ type ConfirmationPageProps = {
 };
 
 export const metadata = {
-  title: "Booking confirmed | ADU Cabin",
+  title: "Booking confirmed | Apples and Arches",
 };
 
 export default function ConfirmationPage({ searchParams }: ConfirmationPageProps) {

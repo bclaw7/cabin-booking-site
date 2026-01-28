@@ -2,18 +2,18 @@ import { BookingForm } from "@/components/booking/BookingForm";
 import { Card } from "@/components/ui/Card";
 
 export const metadata = {
-  title: "Book your stay | ADU Cabin",
+  title: "Book your stay | Apples and Arches",
 };
 
 export default function BookPage() {
   return (
     <div className="space-y-6">
       <div className="space-y-2">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-700">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">
           Book your stay
         </p>
-        <h1 className="text-3xl font-bold text-emerald-950">Choose dates, guests, and details</h1>
-        <p className="text-emerald-800">
+        <h1 className="text-3xl font-bold text-emerald-500">Choose dates, guests, and details</h1>
+        <p className="text-emerald-500">
           We check availability before confirming. Expect a fast, mobile-friendly flow with clear validation and
           ARIA-friendly fields.
         </p>

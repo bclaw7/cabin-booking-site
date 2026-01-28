@@ -15,7 +15,7 @@ export function Card({ title, subtitle, footer, className, children }: CardProps
       className={`rounded-xl border border-emerald-50 bg-white shadow-sm shadow-emerald-100/30 transition hover:shadow-md ${className ?? ""}`}
     >
       {(title || subtitle) && (
-        <header className="border-b border-emerald-50 px-5 pb-3 pt-4">
+        <header className="border-b border-emerald-100 px-5 pb-3 pt-4">
           {title && <h2 className="text-lg font-semibold text-emerald-900">{title}</h2>}
           {subtitle && <p className="text-sm text-emerald-700">{subtitle}</p>}
         </header>

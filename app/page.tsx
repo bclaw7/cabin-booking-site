@@ -10,7 +10,7 @@ export default function Home() {
           <div className="space-y-4">
             <p className="text-sm uppercase tracking-[0.2em] text-emerald-100">Cabin escape</p>
             <h1 className="text-3xl font-bold leading-tight sm:text-4xl">
-              Book an ADA-friendly cabin surrounded by redwoods.
+              Book an ADA-friendly cabin with a view of the mountains.
             </h1>
             <p className="max-w-2xl text-lg text-emerald-50">
               Step-free entry, wide doorways, and calm lighting make this a comfortable stay for every guest.
