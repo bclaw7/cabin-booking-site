@@ -23,7 +23,7 @@ export function ContactInfo({
   onChange,
 }: ContactInfoProps) {
   const inputClasses =
-    "w-full rounded-md border border-emerald-100 px-3 py-2 text-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-100";
+    "w-full rounded-md border border-emerald-300 bg-white px-3 py-2 text-sm text-emerald-900 placeholder-emerald-600 focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100 focus:outline-none disabled:bg-emerald-50";
 
   return (
     <div className="grid gap-3">

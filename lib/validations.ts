@@ -12,62 +12,55 @@ const coerceDate = (field: string) =>
       return Number.isNaN(parsed.getTime()) ? undefined : parsed;
     },
     z.date({
-      required_error: `${field} date is required`,
-      invalid_type_error: `${field} date is invalid`,
+      error: `${field} date is required`,
     }),
   );
 
-export const bookingFormSchema = z
-  .object({
-    checkIn: coerceDate("Check-in"),
-    checkOut: coerceDate("Check-out"),
-    adults: z.preprocess(
-      (val) => Number(val ?? 0),
-      z
-        .number({
-          required_error: "At least one adult is required",
-          invalid_type_error: "Adults must be a number",
-        })
-        .int()
-        .min(1, "At least one adult is required")
-        .max(6, "Maximum 6 adults"),
+const bookingFormBase = z.object({
+  checkIn: coerceDate("Check-in"),
+  checkOut: coerceDate("Check-out"),
+  adults: z.preprocess(
+    (val) => Number(val ?? 0),
+    z
+      .number()
+      .int()
+      .min(1, "At least one adult is required")
+      .max(6, "Maximum 6 adults"),
+  ),
+  children: z.preprocess(
+    (val) => Number(val ?? 0),
+    z
+      .number()
+      .int()
+      .min(0, "Children cannot be negative")
+      .max(6, "Maximum 6 children"),
+  ),
+  pets: z.preprocess(
+    (val) => Number(val ?? 0),
+    z
+      .number()
+      .int()
+      .min(0, "Pets cannot be negative")
+      .max(2, "Up to 2 pets allowed"),
+  ),
+  name: z.string().trim().min(2, "Name is required"),
+  email: z.string().trim().email("Valid email is required"),
+  phone: z
+    .string()
+    .trim()
+    .regex(
+      /^(?:\+1\s?)?(?:\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4})$/,
+      "Enter a valid US phone number",
     ),
-    children: z.preprocess(
-      (val) => Number(val ?? 0),
-      z
-        .number({
-          invalid_type_error: "Children must be a number",
-        })
-        .int()
-        .min(0, "Children cannot be negative")
-        .max(6, "Maximum 6 children"),
-    ),
-    pets: z.preprocess(
-      (val) => Number(val ?? 0),
-      z
-        .number({
-          invalid_type_error: "Pets must be a number",
-        })
-        .int()
-        .min(0, "Pets cannot be negative")
-        .max(2, "Up to 2 pets allowed"),
-    ),
-    name: z.string().trim().min(2, "Name is required"),
-    email: z.string().trim().email("Valid email is required"),
-    phone: z
-      .string()
-      .trim()
-      .regex(
-        /^(?:\+1\s?)?(?:\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4})$/,
-        "Enter a valid US phone number",
-      ),
-    specialRequests: z
-      .string()
-      .trim()
-      .max(500, "Special requests are limited to 500 characters")
-      .optional()
-      .or(z.literal("")),
-  })
+  specialRequests: z
+    .string()
+    .trim()
+    .max(500, "Special requests are limited to 500 characters")
+    .optional()
+    .or(z.literal("")),
+});
+
+export const bookingFormSchema = bookingFormBase
   .refine(
     (data) => data.checkIn && isAfter(startOfDay(data.checkIn), today),
     {
@@ -104,6 +97,14 @@ export const bookingFormSchema = z
   );
 
 export type BookingFormValues = z.infer<typeof bookingFormSchema>;
+export type BookingFormInput = z.input<typeof bookingFormSchema>;
+export const availabilitySchema = bookingFormBase.pick({
+  checkIn: true,
+  checkOut: true,
+  adults: true,
+  children: true,
+  pets: true,
+});
 
 export const calcNights = (checkIn: Date, checkOut: Date) =>
   Math.max(differenceInCalendarDays(checkOut, checkIn), 0);

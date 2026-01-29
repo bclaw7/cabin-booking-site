@@ -6,15 +6,7 @@ import {
   isRangeValid,
   suggestNextAvailableRange,
 } from "@/lib/booking-logic";
-import { bookingFormSchema } from "@/lib/validations";
-
-const availabilitySchema = bookingFormSchema.pick({
-  checkIn: true,
-  checkOut: true,
-  adults: true,
-  children: true,
-  pets: true,
-});
+import { availabilitySchema } from "@/lib/validations";
 
 export async function POST(req: NextRequest) {
   try {

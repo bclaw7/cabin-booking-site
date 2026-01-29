@@ -9,6 +9,7 @@ import { createBooking, checkAvailability } from "@/lib/api-client";
 import { calculateEstimate } from "@/lib/booking-logic";
 import {
   BookingFormValues,
+  BookingFormInput,
   bookingFormSchema,
   calcNights,
 } from "@/lib/validations";
@@ -35,7 +36,7 @@ export function BookingForm() {
     setValue,
     watch,
     formState: { errors, isSubmitting },
-  } = useForm<BookingFormValues>({
+  } = useForm<BookingFormInput, any, BookingFormValues>({
     resolver: zodResolver(bookingFormSchema),
     defaultValues: {
       checkIn: defaultCheckIn,
@@ -51,7 +52,7 @@ export function BookingForm() {
     mode: "onBlur",
   });
 
-  const watchValues = watch();
+  const watchValues = watch() as BookingFormValues;
   const range = useMemo(
     () => ({
       from: watchValues.checkIn,
